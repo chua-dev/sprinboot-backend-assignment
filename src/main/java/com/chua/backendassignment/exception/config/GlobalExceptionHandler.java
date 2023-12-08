@@ -1,0 +1,28 @@
+package com.chua.backendassignment.exception.config;
+
+import com.chua.backendassignment.exception.EntityNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.time.LocalDateTime;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> handleEntityNotFoundException(Exception ex){
+        ErrorResponse errorResponse = ErrorResponse.builder()
+                .message(ex.getMessage())
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(errorResponse, errorResponse.getHttpStatus());
+    }
+
+}
