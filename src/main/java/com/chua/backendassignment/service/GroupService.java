@@ -1,25 +1,26 @@
 package com.chua.backendassignment.service;
 
+import com.chua.backendassignment.dto.GroupDto;
 import com.chua.backendassignment.model.Group;
 
 import java.util.List;
 
 public interface GroupService {
-    List<Group> getGroups();
+    List<GroupDto> getGroups();
 
-    Group createGroup(Group group);
+    GroupDto createGroup(GroupDto group);
 
-    Group updateGroup(Long groupId, Group group);
+    GroupDto updateGroup(Long groupId, GroupDto group);
 
-    Group getGroup(Long groupId);
+    GroupDto getGroup(Long groupId);
 
-    Group deleteGroup(Long groupId);
+    GroupDto deleteGroup(Long groupId);
 
-    Group findByName(String name);
+    GroupDto findByName(String name);
 
-    boolean existGroup(String name);
+    boolean existGroup(GroupDto group);
 
-    List<Group> getActiveGroups();
+    List<GroupDto> getActiveGroups();
 
-    List<Group> getDescriptionContains(String Name);
+    List<GroupDto> getDescriptionContains(String description);
 }

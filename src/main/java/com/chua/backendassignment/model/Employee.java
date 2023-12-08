@@ -3,6 +3,7 @@ package com.chua.backendassignment.model;
 import com.chua.backendassignment.model.util.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +13,10 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Data
 @Builder
-@Entity(name = "customer")
+@Entity(name = "employee")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Employee {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +28,7 @@ public class User {
     @Column(name = "gender")
     private Gender gender;
     @Column(name = "email", unique = true)
+    @Email
     private String email;
     @Column(name = "age")
     private Integer age;
