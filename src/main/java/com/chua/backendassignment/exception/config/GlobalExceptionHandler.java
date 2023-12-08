@@ -1,6 +1,6 @@
 package com.chua.backendassignment.exception.config;
 
-import com.chua.backendassignment.exception.EntityNotFoundException;
+import com.chua.backendassignment.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Object> handleEntityNotFoundException(Exception ex){
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> handleResourceNotFoundException(Exception ex){
         
         ErrorResponse errorResponse = ErrorResponse.builder()
                 .message(ex.getMessage())

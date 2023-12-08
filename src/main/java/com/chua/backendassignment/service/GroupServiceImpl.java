@@ -1,7 +1,7 @@
 package com.chua.backendassignment.service;
 
 import com.chua.backendassignment.dto.GroupDto;
-import com.chua.backendassignment.exception.EntityNotFoundException;
+import com.chua.backendassignment.exception.ResourceNotFoundException;
 import com.chua.backendassignment.model.Group;
 import com.chua.backendassignment.repository.GroupRepository;
 import org.modelmapper.ModelMapper;
@@ -29,61 +29,73 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public Group createGroup(Group group) {
-        return groupRepository.save(group);
+    public GroupDto createGroup(GroupDto groupDto) {
+        Group group = modelMapper.map(groupDto, Group.class);
+        Group savedGroup = groupRepository.save(group);
+        return modelMapper.map(savedGroup, GroupDto.class);
     }
 
     @Override
-    public Group updateGroup(Long groupId, Group group) {
+    public GroupDto updateGroup(Long groupId, GroupDto groupDto) {
 
         Group groupFromDb = groupRepository.findById(groupId)
-                .orElseThrow(() -> new EntityNotFoundException("Group", "id", groupId));
+                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", groupId));
 
-        groupFromDb.setName(group.getName());
-        groupFromDb.setDescription(group.getDescription());
-        groupFromDb.setCode(group.getCode());
-        groupFromDb.setActive(group.isActive());
+        groupFromDb.setName(groupDto.getName());
+        groupFromDb.setDescription(groupDto.getDescription());
+        groupFromDb.setCode(groupDto.getCode());
+        groupFromDb.setActive(groupDto.isActive());
 
-        return groupRepository.save(groupFromDb);
+        Group updatedGroup = groupRepository.save(groupFromDb);
+
+        return modelMapper.map(updatedGroup, GroupDto.class);
     }
 
     @Override
-    public Group getGroup(Long groupId) {
-        return groupRepository.findById(groupId)
-                .orElseThrow(() -> new EntityNotFoundException("Group", "id", groupId));
+    public GroupDto getGroup(Long groupId) {
+        Group groupFromDb = groupRepository.findById(groupId)
+                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", groupId));
+
+        return modelMapper.map(groupFromDb, GroupDto.class);
     }
 
     @Override
-    public Group deleteGroup(Long groupId) {
+    public GroupDto deleteGroup(Long groupId) {
 
         Group groupFromDb = groupRepository.findById(groupId)
-                .orElseThrow(() -> new EntityNotFoundException("Group", "id", groupId));
+                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", groupId));
         groupRepository.delete(groupFromDb);
 
-        return groupFromDb;
+        return modelMapper.map(groupFromDb, GroupDto.class);
     }
 
     @Override
-    public Group findByName(String name) {
+    public GroupDto findByName(String name) {
         Group group = groupRepository.findByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("Group", "name", name));
-        return null;
+                .orElseThrow(() -> new ResourceNotFoundException("Group", "name", name));
+        return modelMapper.map(group, GroupDto.class);
     }
 
     @Override
-    public boolean existGroup(Group group) {
-        return groupRepository.existsByCode(group.getCode())
-                && groupRepository.existsByName(group.getName());
+    public boolean existGroup(GroupDto groupDto) {
+        return groupRepository.existsByCode(groupDto.getCode())
+                && groupRepository.existsByName(groupDto.getName());
     }
 
     @Override
-    public List<Group> getActiveGroups() {
-        return groupRepository.findByActiveTrue();
+    public List<GroupDto> getActiveGroups() {
+        return groupRepository.findByActiveTrue()
+                .stream()
+                .map(group -> modelMapper.map(group, GroupDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<Group> getDescriptionContains(String description) {
-        return groupRepository.findByDescriptionContaining(description);
+    public List<GroupDto> getDescriptionContains(String description) {
+        return groupRepository.findByDescriptionContaining(description)
+                .stream()
+                .map(group -> modelMapper.map(group, GroupDto.class))
+                .collect(Collectors.toList());
     }
 
 }
