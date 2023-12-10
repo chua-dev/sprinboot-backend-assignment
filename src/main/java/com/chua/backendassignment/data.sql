@@ -1,0 +1,12 @@
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('1', 'Alpha', 'A001', 'First alpha team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('2', 'Tetra', 'T001', 'Second tetra team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('3', 'Mega', 'M001', 'Third mega team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('4', 'Melvin', 'M002', 'Fourth melvin team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('5', 'Nexon', 'N001', 'Fifth nexon team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('6', 'Sony', 'S001', 'Sixth sony team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('7', 'Quzz', 'Q001', 'Seventh quzz team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('8', 'Zes', 'Z001', 'Eighth zes team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('9', 'Xenon', 'X001', 'Ninth xenon team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('10', 'Xebe', 'X002', 'Tenth Xebe team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('11', 'Opsy', 'O001', 'Eleventh opsy team', true);
+INSERT INTO `TESTDB`.`group` (`id`, `name`,`code`, `description`, `active`) VALUES ('12', 'Pritz', 'P001', 'Twelve pritz team', true);

@@ -5,6 +5,10 @@ import com.chua.backendassignment.exception.ResourceNotFoundException;
 import com.chua.backendassignment.model.Group;
 import com.chua.backendassignment.repository.GroupRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +26,12 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
-    public List<GroupDto> getGroups() {
-        return groupRepository.findAll().stream().map(group ->
-            modelMapper.map(group, GroupDto.class))
+    public List<GroupDto> getGroups(Integer pageNo, Integer pageSize, String sortBy) {
+
+        Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        return groupRepository.findAll(pageable).getContent()
+                .stream().map(group -> modelMapper.map(group, GroupDto.class))
                 .collect(Collectors.toList());
     }
 
