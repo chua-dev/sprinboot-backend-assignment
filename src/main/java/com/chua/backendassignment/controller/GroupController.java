@@ -1,6 +1,7 @@
 package com.chua.backendassignment.controller;
 
 import com.chua.backendassignment.dto.GroupDto;
+import com.chua.backendassignment.dto.GroupAndEmployeesDto;
 import com.chua.backendassignment.model.response.GeolocationResponse;
 import com.chua.backendassignment.service.GroupService;
 import org.slf4j.Logger;
@@ -55,6 +56,18 @@ public class GroupController {
         return new ResponseEntity<>(groupDto, HttpStatus.CREATED);
     }
 
+    @PostMapping("/creates")
+    public ResponseEntity<List<GroupDto>> createGroups(@RequestBody List<GroupDto> groupDtos){
+        List<GroupDto> groupDtosResult = groupService.createGroups(groupDtos);
+        return new ResponseEntity<>(groupDtosResult, HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<GroupAndEmployeesDto> createGroupAndEmployees(@RequestBody GroupAndEmployeesDto groupAndEmployeesDto){
+        GroupAndEmployeesDto result = groupService.createGroupAndEmployees(groupAndEmployeesDto);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
     @PatchMapping("/{groupId}")
     public ResponseEntity<GroupDto> updateGroup(@PathVariable(name = "groupId") Long groupId, @RequestBody GroupDto group){
         GroupDto groupDto = groupService.updateGroup(groupId, group);
@@ -73,6 +86,12 @@ public class GroupController {
         return new ResponseEntity<>(groupDto, HttpStatus.OK);
     }
 
+    @GetMapping(params = "description")
+    public ResponseEntity<List<GroupDto>> getDescriptionContain(@RequestParam(name = "description") String description){
+        List<GroupDto> groupListDto = groupService.getDescriptionContains(description);
+        return new ResponseEntity<>(groupListDto, HttpStatus.OK);
+    }
+
     @GetMapping("/active")
     public ResponseEntity<List<GroupDto>> getActiveGroup(){
         List<GroupDto> activeGroup = groupService.getActiveGroups();
@@ -85,10 +104,6 @@ public class GroupController {
         return new ResponseEntity<>(isGroupExist, HttpStatus.OK);
     }
 
-    @GetMapping(params = "description")
-    public ResponseEntity<List<GroupDto>> getDescriptionContain(@RequestParam(name = "description") String description){
-        List<GroupDto> groupListDto = groupService.getDescriptionContains(description);
-        return new ResponseEntity<>(groupListDto, HttpStatus.OK);
-    }
+
 
 }
