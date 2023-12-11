@@ -2,6 +2,7 @@ package com.chua.backendassignment.model;
 
 import com.chua.backendassignment.model.util.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "firstname")
+    @JsonProperty("first_name")
     private String firstName;
     @Column(name = "lastname")
+    @JsonProperty("last_name")
     private String lastName;
     @Column(name = "gender")
     private Gender gender;

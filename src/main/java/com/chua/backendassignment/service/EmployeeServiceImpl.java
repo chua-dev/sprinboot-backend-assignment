@@ -50,6 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
+    @Transactional
     public void deleteAllEmployeeOfDepartment(Long deptId) {
         if (!departmentRepository.existsById(deptId)){
             throw new ResourceNotFoundException("Department", "id", deptId);

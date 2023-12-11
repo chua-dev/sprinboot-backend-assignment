@@ -1,11 +1,11 @@
-package com.chua.backendassignment.log;
+package com.chua.backendassignment.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+
 public class LogHandlerInterceptor implements HandlerInterceptor {
 
     Logger logger = LoggerFactory.getLogger(LogHandlerInterceptor.class);
@@ -15,11 +15,6 @@ public class LogHandlerInterceptor implements HandlerInterceptor {
         logger.info("LogHandlerInterceptor::preHandle");
         logger.info("Received request: {} {} from {}", request.getMethod(), request.getRequestURI(), request.getRemoteAddr());
         return true;
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        logger.info("LogHandlerInterceptor::postHandle");
     }
 
     @Override

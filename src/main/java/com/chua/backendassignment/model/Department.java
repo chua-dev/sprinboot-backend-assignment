@@ -17,9 +17,9 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "name", unique = true)
+    @Column(name = "name")
     private String name;
-    @Column(name = "code", unique = true)
+    @Column(name = "code")
     private String code;
     @Column(name = "description")
     private String description;
