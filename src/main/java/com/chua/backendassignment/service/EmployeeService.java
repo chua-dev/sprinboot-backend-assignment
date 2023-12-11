@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    EmployeeDto createEmployee(Long groupId, EmployeeDto employeeDto);
+    EmployeeDto createEmployee(Long deptId, EmployeeDto employeeDto);
 
-    List<EmployeeDto> getAllEmployeeOfGroup(Long groupId);
+    List<EmployeeDto> getAllEmployeeOfDepartment(Long deptId);
 
-    void deleteAllEmployeeOfGroup(Long groupId);
+    void deleteAllEmployeeOfDepartment(Long deptId);
 }

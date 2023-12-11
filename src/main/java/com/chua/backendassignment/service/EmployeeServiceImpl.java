@@ -3,11 +3,10 @@ package com.chua.backendassignment.service;
 import com.chua.backendassignment.dto.EmployeeDto;
 import com.chua.backendassignment.exception.ResourceNotFoundException;
 import com.chua.backendassignment.model.Employee;
-import com.chua.backendassignment.model.Group;
+import com.chua.backendassignment.model.Department;
 import com.chua.backendassignment.repository.EmployeeRepository;
-import com.chua.backendassignment.repository.GroupRepository;
+import com.chua.backendassignment.repository.DepartmentRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,44 +17,44 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService{
 
     private final EmployeeRepository employeeRepository;
-    private final GroupRepository groupRepository;
+    private final DepartmentRepository departmentRepository;
     private final ModelMapper modelMapper;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, GroupRepository groupRepository, ModelMapper modelMapper){
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, DepartmentRepository departmentRepository, ModelMapper modelMapper){
         this.employeeRepository = employeeRepository;
-        this.groupRepository = groupRepository;
+        this.departmentRepository = departmentRepository;
         this.modelMapper = modelMapper;
     }
 
     @Override
     @Transactional
-    public EmployeeDto createEmployee(Long groupId, EmployeeDto employeeDto) {
-        Group group = groupRepository.findById(groupId)
-                .orElseThrow(() -> new ResourceNotFoundException("Group", "id", groupId));
+    public EmployeeDto createEmployee(Long deptId, EmployeeDto employeeDto) {
+        Department department = departmentRepository.findById(deptId)
+                .orElseThrow(() -> new ResourceNotFoundException("Department", "id", deptId));
         Employee employee = modelMapper.map(employeeDto, Employee.class);
-        employee.setGroup(group);
+        employee.setDepartment(department);
         employee = employeeRepository.save(employee);
         return modelMapper.map(employee, EmployeeDto.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<EmployeeDto> getAllEmployeeOfGroup(Long groupId) {
-        if (!groupRepository.existsById(groupId)){
-            throw new ResourceNotFoundException("Group", "id", groupId);
+    public List<EmployeeDto> getAllEmployeeOfDepartment(Long deptId) {
+        if (!departmentRepository.existsById(deptId)){
+            throw new ResourceNotFoundException("Department", "id", deptId);
         }
 
-        return employeeRepository.findByGroupId(groupId).stream()
+        return employeeRepository.findByDepartmentId(deptId).stream()
                 .map(employee -> modelMapper.map(employee, EmployeeDto.class))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void deleteAllEmployeeOfGroup(Long groupId) {
-        if (!groupRepository.existsById(groupId)){
-            throw new ResourceNotFoundException("Group", "id", groupId);
+    public void deleteAllEmployeeOfDepartment(Long deptId) {
+        if (!departmentRepository.existsById(deptId)){
+            throw new ResourceNotFoundException("Department", "id", deptId);
         }
 
-        employeeRepository.deleteByGroupId(groupId);
+        employeeRepository.deleteByDepartmentId(deptId);
     }
 }

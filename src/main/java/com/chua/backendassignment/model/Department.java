@@ -8,10 +8,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@Entity(name = "group")
+@Entity
+@Table(name = "department")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Group {
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

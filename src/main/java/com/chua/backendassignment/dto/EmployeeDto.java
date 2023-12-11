@@ -1,6 +1,6 @@
 package com.chua.backendassignment.dto;
 
-import com.chua.backendassignment.model.Group;
+import com.chua.backendassignment.model.Department;
 import com.chua.backendassignment.model.util.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Email;
@@ -19,5 +19,5 @@ public class EmployeeDto {
     private String email;
     private Integer age;
     @JsonIgnore
-    private Group group;
+    private Department department;
 }

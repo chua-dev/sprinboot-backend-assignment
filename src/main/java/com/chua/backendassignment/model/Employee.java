@@ -37,5 +37,5 @@ public class Employee {
     @JoinColumn(name = "group_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Group group;
+    private Department department;
 }

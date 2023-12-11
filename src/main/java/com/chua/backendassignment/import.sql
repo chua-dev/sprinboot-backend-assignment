@@ -1,0 +1,12 @@
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('1', 'Alpha', 'A001', 'First alpha dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('2', 'Tetra', 'T001', 'Second tetra dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('3', 'Mega', 'M001', 'Third mega dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('4', 'Melvin', 'M002', 'Fourth melvin dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('5', 'Nexon', 'N001', 'Fifth nexon dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('6', 'Sony', 'S001', 'Sixth sony dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('7', 'Quzz', 'Q001', 'Seventh quzz dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('8', 'Zes', 'Z001', 'Eighth zes dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('9', 'Xenon', 'X001', 'Ninth xenon dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('10', 'Xebe', 'X002', 'Tenth Xebe dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('11', 'Opsy', 'O001', 'Eleventh opsy dept', true);
+INSERT INTO `TESTDB`.`department` (`id`, `name`,`code`, `description`, `active`) VALUES ('12', 'Pritz', 'P001', 'Twelve pritz dept', true);
