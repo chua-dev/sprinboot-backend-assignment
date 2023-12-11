@@ -45,7 +45,7 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}")
-    public ResponseEntity<GroupDto> getGroupById(@PathVariable(name = "groupId") Long groupId){
+    public ResponseEntity<GroupDto> getGroupById(@PathVariable(value = "groupId") Long groupId){
         GroupDto groupDto = groupService.getGroup(groupId);
         return new ResponseEntity<>(groupDto, HttpStatus.OK);
     }
@@ -69,25 +69,25 @@ public class GroupController {
     }
 
     @PatchMapping("/{groupId}")
-    public ResponseEntity<GroupDto> updateGroup(@PathVariable(name = "groupId") Long groupId, @RequestBody GroupDto group){
+    public ResponseEntity<GroupDto> updateGroup(@PathVariable(value = "groupId") Long groupId, @RequestBody GroupDto group){
         GroupDto groupDto = groupService.updateGroup(groupId, group);
         return new ResponseEntity<>(groupDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{groupId}")
-    public ResponseEntity<GroupDto> deleteGroup(@PathVariable(name = "groupId") Long groupId){
+    public ResponseEntity<GroupDto> deleteGroup(@PathVariable(value = "groupId") Long groupId){
         GroupDto groupDto = groupService.deleteGroup(groupId);
         return new ResponseEntity<>(groupDto, HttpStatus.OK);
     }
 
     @GetMapping(params = "name")
-    public ResponseEntity<GroupDto> getGroupByName(@RequestParam(name = "name") String name){
+    public ResponseEntity<GroupDto> getGroupByName(@RequestParam(value = "name") String name){
         GroupDto groupDto = groupService.findByName(name);
         return new ResponseEntity<>(groupDto, HttpStatus.OK);
     }
 
     @GetMapping(params = "description")
-    public ResponseEntity<List<GroupDto>> getDescriptionContain(@RequestParam(name = "description") String description){
+    public ResponseEntity<List<GroupDto>> getDescriptionContain(@RequestParam(value = "description") String description){
         List<GroupDto> groupListDto = groupService.getDescriptionContains(description);
         return new ResponseEntity<>(groupListDto, HttpStatus.OK);
     }
