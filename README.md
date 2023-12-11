@@ -13,7 +13,7 @@ Java 17
 
 ## List of APIs:
 - Get - /api/department?pageNo=0&pageSize=10&sortBy=id
-- Get - /api/department/thirdPartyApi
+- Get - /api/department/thirdPartyApi | **Third Party Geolocation API - https://ipapi.co/json/**
 - Get - /api/department/{deptId}
 - Post - /api/department | **ReqBody - `DepartmentDto`**
 - Post - /api/department/creates | **ReqBody - `List<DepartmentDto>`**
