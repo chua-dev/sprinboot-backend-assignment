@@ -44,6 +44,7 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
+    @Transactional
     public GroupDto createGroup(GroupDto groupDto) {
         Group group = modelMapper.map(groupDto, Group.class);
         Group savedGroup = groupRepository.save(group);
@@ -103,6 +104,7 @@ public class GroupServiceImpl implements GroupService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public GroupDto getGroup(Long groupId) {
         Group groupFromDb = groupRepository.findById(groupId)
                 .orElseThrow(() -> new ResourceNotFoundException("Group", "id", groupId));
